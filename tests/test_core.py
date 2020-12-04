@@ -1,4 +1,5 @@
 import unittest
+import pickle
 import context
 
 import core as unit
@@ -6,13 +7,16 @@ import core as unit
 
 class TestCore(unittest.TestCase):
 
+    def setUp(self):
+        with open('sample_issue_data.pkl', 'rb') as f:
+            self.sample_issue_data = pickle.load(f)
+        super(TestCore, self).setUp()
+
     def test_config_parsing(self):
         config = unit.parse_config('../sample_config.ini')
         self.assertEqual(config['user'], 'TestUser')
-        self.assertEqual(config['password'], 'TestPassword')
-
-    def test_foo(self):
-        self.assertEqual(1, unit.foo())
+        self.assertEqual(config['token'], 'TestToken')
+        self.assertEqual(config['repository'], 'test/repository')
 
 
 if __name__ == '__main__':
