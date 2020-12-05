@@ -130,3 +130,6 @@ dmypy.json
 
 # credentials
 config.ini
+
+# IDE
+.vscode/
