@@ -17,6 +17,7 @@ class TestCore(unittest.TestCase):
         self.assertEqual(config['user'], 'TestUser')
         self.assertEqual(config['token'], 'TestToken')
         self.assertEqual(config['repository'], 'test/repository')
+        self.assertEqual(config['url'], 'https://api.github.com')
 
 
 if __name__ == '__main__':

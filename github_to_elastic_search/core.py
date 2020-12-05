@@ -1,5 +1,4 @@
 from configparser import ConfigParser
-from github import Github
 
 
 def parse_config(path_to_config):
@@ -9,18 +8,5 @@ def parse_config(path_to_config):
     out['user'] = config.get('github', 'user')
     out['token'] = config.get('github', 'token')
     out['repository'] = config.get('github', 'repository')
+    out['url'] = config.get('github', 'url')
     return out
-
-
-def get_repo(config):
-    g = Github(config['user'], config['token'])
-    return g.get_repo(config['repository'])
-
-
-def get_all_issues(config):
-    g = Github(config['user'], config['token'])
-    all_issues = []
-    issues = g.get_repo(config['repository']).get_issues(state='all')
-    for issue in issues:
-        all_issues.append(issue)
-    return all_issues
