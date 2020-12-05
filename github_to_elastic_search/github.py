@@ -18,7 +18,7 @@ class Github():
         json_data = self.__query_github('/user')
         return json_data['name']
 
-    def get_all_commits_raw(self):
+    def get_all_commits(self):
         json_data = []
         page = 0
         while (1):

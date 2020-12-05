@@ -18,7 +18,7 @@ class TestGithub(unittest.TestCase):
         self.assertEqual(self.unit.get_user_name(), 'TestUser')
 
     @requests_mock.Mocker()
-    def test_get_all_commits_raw(self, m):
+    def test_get_all_commits(self, m):
         query_url = 'https://test.url.com/repos/test/repository/commits?per_page=50&page='
         json_response_0 = [{'sha': 1}, {'sha': 2}]
         json_response_1 = [{'sha': 3}, {'sha': 4}]
@@ -27,7 +27,7 @@ class TestGithub(unittest.TestCase):
         m.get(query_url + '1', json=json_response_1)
         m.get(query_url + '2', json=json_response_2)
         
-        json_data = self.unit.get_all_commits_raw()
+        json_data = self.unit.get_all_commits()
 
         self.assertEqual(json_data, json_response_0 + json_response_1)
 
