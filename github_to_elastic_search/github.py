@@ -1,10 +1,14 @@
 import requests
 import time
+import hashlib
+import json
+import time
 
 
 class Github():
-    def __init__(self, config):
+    def __init__(self, config, avoid_rate_limiting=True):
         self.config = config
+        self.avoid_rate_limiting = avoid_rate_limiting
 
     def __query_github(self, query):
         url = self.config['url'] + query
@@ -18,7 +22,7 @@ class Github():
         json_data = self.__query_github('/user')
         return json_data['name']
 
-    def get_all_commits(self):
+    def get_all_commits_raw(self):
         json_data = []
         page = 0
         while (1):
@@ -31,5 +35,21 @@ class Github():
             json_data += new_data
             page += 1
             print('get_all_commits... got page ' + str(page))
-            time.sleep(1)  # avoid rate limiting
+            if self.avoid_rate_limiting:
+                time.sleep(1)
         return json_data
+
+    def get_all_commits_annotated(self):
+        timestamp = time.time()
+        raw_commits = self.get_all_commits_raw()
+        annotated_commits = []
+        for commit in raw_commits:
+            annotated_commits.append(self.__annotate_commit(commit, timestamp))
+        return annotated_commits
+
+    def __annotate_commit(self, commit_json, timestamp):
+        data_hash = hashlib.sha224(json.dumps(
+            commit_json, sort_keys=True).encode('utf-8')).hexdigest()
+        commit_json['data_hash'] = data_hash
+        commit_json['last_updated_at'] = timestamp
+        return commit_json

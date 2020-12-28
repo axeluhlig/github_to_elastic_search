@@ -4,13 +4,11 @@
 Use powerful analytics tools like Kibana or Grafana to monitor KPIs that matter. 
 - Cycle time
 - Number of P1 bugs over time
-- Effective headcount: Number of individual contributers over time
+- "Active" headcount: Number of individual contributers over time
 - Number of new and deleted SLOC (lines of code) over time 
 - ...
 
 This tool regularly uploads all needed data to an elasticsearch database, which can then serve as data source for your analytic tools. 
-
-#EngOps
 
 ## WIP notes
 Steps
@@ -46,12 +44,3 @@ Usage examples:
 - How long do the currently active developers already contribute to the project (over time)? -> How is the experience developing over time?  
 
 How: Save plain json about commits in ELS and use Kibana to do the rest. 
-
-
-
-### 
-
-## Testing: 
-- save some json data with pickle
-- use that data to test functions to set up additional fields
-- testing of fetching and pushing optional

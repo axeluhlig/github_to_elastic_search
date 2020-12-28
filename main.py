@@ -9,7 +9,7 @@ def main():
     config = core.parse_config('config.ini')
     gh = github.Github(config)
     print('Hello ' + gh.get_user_name())
-    commits = gh.get_all_commits()
+    commits = gh.get_all_commits_annotated()
 
 
 if __name__ == "__main__":
