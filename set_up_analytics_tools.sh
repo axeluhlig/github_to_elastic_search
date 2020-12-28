@@ -17,4 +17,3 @@ ip route get 1 | sed -n 's/^.*src \([0-9.]*\) .*$/\1/p'
 
 # Security
 # - block external traffic to server using a firewall: ufw allow from YOUR.PUBLIC.IP && ufw enable
-# - use ssh -L 1337:remotehost:5601 user@myserver (https://serverfault.com/questions/78351/can-i-create-ssh-to-tunnel-http-through-server-like-it-was-proxy)
