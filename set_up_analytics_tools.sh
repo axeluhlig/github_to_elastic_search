@@ -15,4 +15,7 @@ docker run -d --name kibana --net somenetwork -p 5601:5601 kibana:7.9.3
 ip route get 1 | sed -n 's/^.*src \([0-9.]*\) .*$/\1/p' | xargs bash -c 'echo IP of Kibana: $0:5601'
 
 # Security
-# - block external traffic to server using a firewall: ufw allow from YOUR.PUBLIC.HOST.IP && ufw enable
+# - block external traffic to server using a firewall: 
+# ufw allow from YOUR.PUBLIC.HOST.IP 
+# ufw status numbered && ufw delete 2 (old policy)
+# ufw enable
