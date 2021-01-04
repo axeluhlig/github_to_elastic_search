@@ -13,6 +13,7 @@ class ElasticSearch():
         self.__ensure_index_exists(self.index_names['commits'])
         for commit in commits:
             self.__push_commit(commit)
+        print('push of all commits to elasticsearch successful')
 
     def __push_commit(self, commit):
         self.es.index(

@@ -11,7 +11,12 @@ Use powerful analytics tools like Kibana or Grafana to monitor KPIs that matter.
 This tool regularly uploads all needed data to an elasticsearch database, which can then serve as data source for your analytic tools. 
 
 ## WIP notes
-Steps
+
+### Next steps
+1. Specify the max number of commits to be pushed at once (-> risk of running out of ram)
+1. Test on bigger repos
+1. Implement global for loop ? 
+### General Steps
 1. Write "push all missing commits to ELS"
 1. Write "push all missing issues to ELS"
 1. Write "push all missing PRs to ELS"
