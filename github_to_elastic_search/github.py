@@ -3,7 +3,6 @@ import time
 import hashlib
 import json
 import time
-import configparser
 
 
 class Github():

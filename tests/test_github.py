@@ -60,10 +60,3 @@ class TestGithub(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main()
-
-# Save test data like this:
-# with open('data.json', 'w', encoding='utf-8') as f:
-#    json.dump(data, f, ensure_ascii=False, indent=4)
-
-# with open('tests/commits_test_data.json', 'r') as j:
-#     contents = json.loads(j.read())
