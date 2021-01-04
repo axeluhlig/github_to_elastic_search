@@ -15,8 +15,7 @@ class ElasticSearch():
             self.__push_commit(commit)
 
     def __push_commit(self, commit):
-        # TODO use index instead
-        self.es.create(
+        self.es.index(
             index=self.index_names['commits'], id=commit['sha'], body=commit)
 
     def __ensure_index_exists(self, index_name):
