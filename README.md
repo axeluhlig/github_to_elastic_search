@@ -13,6 +13,7 @@ This tool regularly uploads all needed data to an elasticsearch database, which 
 ## WIP notes
 
 ### Next steps
+1. Fix tests on Github (green locally)
 1. Specify the max number of commits to be pushed at once (-> risk of running out of ram)
 1. Test on bigger repos
 1. Implement global for loop ? 
