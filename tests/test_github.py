@@ -2,6 +2,8 @@ import unittest
 import context
 import requests_mock
 import time
+import configparser
+
 
 from github_to_elastic_search import github
 
@@ -9,8 +11,10 @@ from github_to_elastic_search import github
 class TestGithub(unittest.TestCase):
 
     def setUp(self):
-        self.unit = github.Github({'user': 'TestUser', 'token': 'TestToken',
-                                   'repository': 'test/repository', 'url': 'https://test.url.com'}, avoid_rate_limiting=False)
+        config = configparser.ConfigParser()
+        config['github'] = {'user': 'TestUser', 'token': 'TestToken',
+                            'repository': 'test/repository', 'url': 'https://test.url.com'}
+        self.unit = github.Github(config, avoid_rate_limiting=False)
         super(TestGithub, self).setUp()
 
     @requests_mock.Mocker()

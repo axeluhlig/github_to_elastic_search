@@ -3,6 +3,7 @@ import time
 import hashlib
 import json
 import time
+import configparser
 
 
 class Github():
@@ -11,9 +12,9 @@ class Github():
         self.avoid_rate_limiting = avoid_rate_limiting
 
     def __query_github(self, query):
-        url = self.config['url'] + query
+        url = self.config.get('github', 'url') + query
         r = requests.get(
-            url, headers={'Authorization': 'token ' + self.config['token']})
+            url, headers={'Authorization': 'token ' + self.config.get('github', 'token')})
         if r.status_code != 200:
             print('Error while fetching data')
         return r.json()
@@ -25,9 +26,9 @@ class Github():
     def get_all_commits_raw(self):
         json_data = []
         page = 0
-        while (1):
+        while (True):
             query = '/repos/' + \
-                self.config['repository'] + \
+                self.config.get('github', 'repository') + \
                     '/commits?per_page=50&page=' + str(page)
             new_data = self.__query_github(query)
             if not new_data:
