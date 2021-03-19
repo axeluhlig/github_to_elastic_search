@@ -54,9 +54,9 @@ class TestGithub(unittest.TestCase):
             json_data[0]['data_hash'], 'd643a8de1b40283ff356dd68ddf5d538487cbb0b1ced53e3dd3a83e6')
         self.assertEqual(
             json_data[1]['data_hash'], 'b53c56b35af074d9cf3532791aa403201c5ae0a0c0974da70daeb2ec')
-        # 1 second max time gap
         timedelta_0 = (current_time - datetime.datetime.strptime(json_data[0]['last_updated_at'], "%a %b %d %H:%M:%S %Y")).total_seconds()
         timedelta_1 = (current_time - datetime.datetime.strptime(json_data[1]['last_updated_at'], "%a %b %d %H:%M:%S %Y")).total_seconds()
+        # 1 second max time gap
         self.assertTrue(timedelta_0 < 1)
         self.assertTrue(timedelta_1 < 1)
 
