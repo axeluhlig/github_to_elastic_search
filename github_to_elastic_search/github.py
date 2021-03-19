@@ -40,7 +40,7 @@ class Github():
         return json_data
 
     def get_all_commits_annotated(self):
-        timestamp = time.time()
+        timestamp = time.ctime()
         raw_commits = self.get_all_commits_raw()
         annotated_commits = []
         for commit in raw_commits:

@@ -1,8 +1,8 @@
 
 Periodically push your git meta data to elasticsearch for further analysis.
 
-## WIP notes
+## Setup
+1. `mv sample_config.ini config.ini`
+1. Enter your Github access data, Elasticsearch URl and target repository into the `config.ini`
+1. `./main.py`
 
-### Next steps
-1. Do in loop
-1. Test on bigger repos
