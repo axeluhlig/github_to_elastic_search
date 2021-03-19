@@ -2,6 +2,7 @@ import unittest
 import context
 import requests_mock
 import time
+import datetime
 import configparser
 
 
@@ -45,7 +46,7 @@ class TestGithub(unittest.TestCase):
         mock.get(query_url + '1', json=json_response_1)
 
         json_data = self.unit.get_all_commits_annotated()
-        current_time = time.time()
+        current_time = datetime.datetime.strptime(time.ctime(), "%a %b %d %H:%M:%S %Y")
 
         self.assertEqual(json_data[0]['sha'], 1)
         self.assertEqual(json_data[1]['sha'], 2)
@@ -54,8 +55,10 @@ class TestGithub(unittest.TestCase):
         self.assertEqual(
             json_data[1]['data_hash'], 'b53c56b35af074d9cf3532791aa403201c5ae0a0c0974da70daeb2ec')
         # 1 second max time gap
-        self.assertTrue(current_time - json_data[0]['last_updated_at'] < 1)
-        self.assertTrue(current_time - json_data[1]['last_updated_at'] < 1)
+        timedelta_0 = (current_time - datetime.datetime.strptime(json_data[0]['last_updated_at'], "%a %b %d %H:%M:%S %Y")).total_seconds()
+        timedelta_1 = (current_time - datetime.datetime.strptime(json_data[1]['last_updated_at'], "%a %b %d %H:%M:%S %Y")).total_seconds()
+        self.assertTrue(timedelta_0 < 1)
+        self.assertTrue(timedelta_1 < 1)
 
 
 if __name__ == '__main__':
